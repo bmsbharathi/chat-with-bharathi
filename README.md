@@ -1,2 +1,2 @@
 # chat-with-bharathi
-A chat app built with react and firebase 
+A chat app built with react and Firebase. 
