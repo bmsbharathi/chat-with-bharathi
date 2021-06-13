@@ -1,3 +1,16 @@
-.home {
+.home{
     text-align: center;
+    padding: 20px;
+}
+.icon{
+    cursor: pointer;
+}
+.login{
+    margin-top: 100px;
+    padding: 15px;
+    
+}
+.description span {
+    color: rgb(219, 152, 92);
+    background-color: #2A2F34;
 }
