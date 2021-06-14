@@ -1,25 +1,32 @@
 import './css/Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import firebase from 'firebase/app';
 import 'firebase/auth';
-import { Redirect } from "react-router-dom";
+import Chat from './Chat';
+import {useAuthState} from 'react-firebase-hooks/auth';
 import 'firebase/firestore';
-import ReactSession from 'react-client-session';
 
-const Home = ({user,auth,firestore}) => {
+const Home = ({firebase}) => {
 
-    const authWithGoogle = () => {
+    const auth = firebase.auth();
+    const [user] = useAuthState(auth);
+
+    const AuthWithGoogle = () => {
 
         const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(googleAuthProvider);
         console.log("User is ...........",user);
-        ReactSession.setStoreType("localStorage");
-        ReactSession.set("user", user);
+    };
+
+    const logout = () => {
+        alert('logout executed!!!')
+        auth.signOut();
     };
 
     return ( 
-        <div className="home">
+        <div>
+           { user==null ? <div className="home">
+                {console.log("User is ===============",user)}
                 <h1 className="title">Chat with Bharathi</h1>
                 <div className="description">
                     <span>
@@ -28,16 +35,12 @@ const Home = ({user,auth,firestore}) => {
                     </span>
                 </div>
                 
-        <div className="login">
-            <FontAwesomeIcon icon={faSignInAlt} className="fa-5x icon" onClick={authWithGoogle} /> 
-            <br />Sign in with Google
-        </div> 
-        
-        user && <Redirect to="/chat" />
-
-                    
+            <div className="login">
+                <FontAwesomeIcon icon={faSignInAlt} className="fa-5x icon" onClick={AuthWithGoogle} /> 
+                <br />Sign in with Google
+            </div>      
+        </div> : <Chat logout={logout} /> }
         </div>
      );
 }
- 
 export default Home;

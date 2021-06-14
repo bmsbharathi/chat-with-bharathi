@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import {useHistory} from 'react-router-dom';
-import ReactSession from 'react-client-session';
 import './css/Chat.css';
 import 'firebase/firestore';
 
-const Chat = () => {
+const Chat = (props) => {
     
-    var history = useHistory();
     const [message,setMessage] = useState('');
     // const oldMessages = firestore.
 
@@ -20,16 +17,13 @@ const Chat = () => {
     };
 
     const signOut = () =>{
-        var auth = ReactSession.get("user");
-        auth.signOut();
-        ReactSession.set("user", null);
-        history.push('/');
+
+        props.logout();
     }
 
     return ( 
         
         <div className="chat">
-            {/* {console.log(ReactSession.get("user"))} */}
             <div className="header">
                 <h1>Chat with Bharathi</h1>
                 <button onClick={signOut}>Sign Out</button>
