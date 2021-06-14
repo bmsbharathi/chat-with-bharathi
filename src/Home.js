@@ -27,7 +27,7 @@ const Home = ({firebase}) => {
         <div>
            { user==null ? <div className="home">
                 {console.log("User is ===============",user)}
-                <h1 className="title">Chat with Bharathi</h1>
+                <h1 className="pageTitle">Chat with Bharathi</h1>
                 <div className="description">
                     <span>
                         This App is created to apply my reacting and integrate it with Firebase for the backend.<br/>

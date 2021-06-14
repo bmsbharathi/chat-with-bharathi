@@ -1,3 +1,29 @@
-.header {
+.title {
+    float: left;
     text-align: center;
+    width: 90%;
+}
+.logout {
+    float: right;
+    text-align: center;
+    padding: 10px;
+}
+.messages{
+    height: 600px;
+    width: 600px;
+    margin-left: 600px;
+    margin-right: 600px;
+}
+.textArea{
+    height: 100px;
+    width: 600px;
+    margin-left: 600px;
+    margin-right: 600px;
+}
+.textArea input{
+    height: 40px;
+    margin: 10px;
+    width: 80%;
+    border-radius: 10px;
+    
 }
