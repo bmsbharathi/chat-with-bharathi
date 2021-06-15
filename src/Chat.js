@@ -5,11 +5,12 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import 'firebase/firestore';
 
 const Chat = (props) => {
-    
+    const firestore = props.firebase.firestore();
     const [message,setMessage] = useState('');
     // const oldMessages = firestore.
 
-    const sendMessage = () => {
+    const sendMessage = (evt) => {
+        evt.preventDefault();
         console.log('Sending message...');
     };
 
@@ -40,7 +41,7 @@ const Chat = (props) => {
             </div>
             <div className="textArea">
                 <form onSubmit={sendMessage}>
-                    <input name="message" onChange={updateMessage} />
+                    <input name="message" placeholder="Say Something!" onChange={updateMessage} />
                     <button type="submit">Send!</button>
                 </form>
             </div>
