@@ -18,10 +18,7 @@ const Home = ({firebase}) => {
         console.log("User is ...........",user);
     };
 
-    const logout = () => {
-        alert('logout executed!!!')
-        auth.signOut();
-    };
+    
 
     return ( 
         <div>
@@ -39,7 +36,7 @@ const Home = ({firebase}) => {
                 <FontAwesomeIcon icon={faSignInAlt} className="fa-5x icon" onClick={AuthWithGoogle} /> 
                 <br />Sign in with Google
             </div>      
-        </div> : <Chat logout={logout} /> }
+        </div> : <Chat firebase={firebase} /> }
         </div>
      );
 }

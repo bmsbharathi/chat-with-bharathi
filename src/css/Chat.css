@@ -9,6 +9,12 @@
     padding: 10px;
     cursor: pointer;
 }
+img {
+    border-radius: 100px;
+}
+.title span{
+    color: rgb(219, 152, 92);
+}
 .messages{
     height: 600px;
     width: 600px;
