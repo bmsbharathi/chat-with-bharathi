@@ -10,30 +10,18 @@ const ShowMessages = (props) => {
     const sentMessagesQuery = messageRef.where("from", "==", props.user.uid).orderBy("timestamp", "asc").limitToLast(10);
     const [sentMessages] = useCollectionData(sentMessagesQuery, { idField: 'id' });
     var [messages] = [];
+    if (receivedMessages) {
 
-    useEffect(
-        () => {
+        messages = sentMessages ? sentMessages.concat(receivedMessages) : receivedMessages;
+    } else {
 
-
-            var [tempMessageArray] = [];
-            if (receivedMessages) {
-
-                tempMessageArray = sentMessages ? sentMessages.concat(receivedMessages) : receivedMessages;
-            } else {
-
-                tempMessageArray = sentMessages ? sentMessages : [];
-            }
-
-            // tempMessageArray.sort(
-            //     (a, b) => {
-            //         return a.timestamp > b.timestamp;
-            //     }
-            // );
-            console.log(typeof tempMessageArray);
-            // console.log("Temp array.....", tempMessageArray)
-            messages = receivedMessages;
-        }, [receivedMessages, sentMessages, messages]);
-
+        messages = sentMessages ? sentMessages : [];
+    }
+    if (messages) {
+        messages.sort(
+            (a, b) => { return a.timestamp > b.timestamp; }
+        );
+    }
     const bharathiPhotoURL = "/bms_dp.png";
     return (
         <div className="showMessages">
