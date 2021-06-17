@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import "./css/ShowMessages.css"
+import SentMessage from './SentMessage';
 const ShowMessages = (props) => {
 
     const messageRef = props.firestore.collection("messages");
@@ -12,13 +13,20 @@ const ShowMessages = (props) => {
             {
                 messages && messages.map(
                     (message) => {
-                        var alignment = "left";
+                        message.timestamp = message.timestamp.toDate().toLocaleTimeString('en-IN');
                         if (message.from === props.user.displayName) {
-                            alignment = "right";
+                            return (<SentMessage user={props.user} message={message} key={message.id} />)
+                        } else {
+                            return (
+                                <p className="receivedMessage" key={message.id}>
+                                    <img className="chatPicture" src={props.user.photoURL} alt="displayPicture" />&nbsp;
+                                    { }: &nbsp; {message.message}
+                                </p>
+                            )
                         }
-                        var sentTime = message.timestamp.toDate().toLocaleTimeString('en-IN');
 
-                        return <p align={alignment} key={message.id}>{sentTime}:&nbsp;{message.message}</p>
+
+
 
                     }
                 )
