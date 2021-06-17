@@ -8,6 +8,8 @@ import 'firebase/firestore';
 const Chat = (props) => {
     const firestore = props.firebase.firestore();
     const auth = props.firebase.auth();
+    const adminUid = "cJ8EZwTgp7VGS9sMoC9ZThNrRax1";
+    const [toUid, setToUid] = useState("");
     const [message, setMessage] = useState("");
     var loggedInUser = auth.currentUser;
     console.log(loggedInUser.uid);
@@ -17,14 +19,15 @@ const Chat = (props) => {
         evt.preventDefault();
         console.log('Sending message...');
         var document = {
-            to: "cJ8EZwTgp7VGS9sMoC9ZThNrRax1",
+            to: adminUid,
+            displayName: loggedInUser.displayName,
             from: loggedInUser.uid,
             message: message,
             timestamp: new Date()
         };
         messageRef.add(document).then(
             () => {
-                console.log("successfully posted");
+                console.log("successfully posted from ", loggedInUser.uid);
                 setMessage("");
             }
         ).catch(
@@ -45,6 +48,28 @@ const Chat = (props) => {
             auth.signOut();
     };
 
+    const sendMessageAsAdmin = (evt) => {
+        evt.preventDefault();
+        console.log('Sending message as Admin...');
+        var document = {
+            to: toUid,
+            displayName: loggedInUser.displayName,
+            from: loggedInUser.uid,
+            message: message,
+            timestamp: new Date()
+        };
+        messageRef.add(document).then(
+            () => {
+                console.log("successfully posted from ", loggedInUser.uid);
+                setMessage("");
+            }
+        ).catch(
+            (error) => {
+                console.log(error);
+            }
+        );
+    };
+
     return (
 
         <div className="chat">
@@ -61,8 +86,9 @@ const Chat = (props) => {
             <ShowMessages firestore={firestore} user={loggedInUser} />
             <div className="textArea">
                 <form onSubmit={sendMessage}>
-                    <input name="message" value={message} placeholder="Say Something!" onChange={updateMessage} />
-                    <FontAwesomeIcon icon={faPaperPlane} onClick={sendMessage} className="fa-2x icon" />
+                    <input className="messageBar" name="message" value={message} placeholder="Say Something!" onChange={updateMessage} />
+                    <FontAwesomeIcon icon={faPaperPlane} onClick={loggedInUser.uid === adminUid ? sendMessageAsAdmin : sendMessage} className="fa-2x icon" />
+                    {loggedInUser.uid === adminUid && < input className="adminMessageBar" placeholder="For Admin Only!" onChange={event => setToUid(event.target.value)} />}
                 </form>
             </div>
         </div>

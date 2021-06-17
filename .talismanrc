@@ -4,4 +4,4 @@ fileignoreconfig:
 - filename: src/ShowMessages.js
   checksum: 2f10b07684bc048e6e45a89cfe4114f67acac3545f0eaedbd771bcb27a08de05
 - filename: src/Chat.js
-  checksum: cc6e54fc70752ae5bc7bac5b80a37ef8d2c43f8cfb1ee5cdcd1db771dcb3ae7a
+  checksum: 6d225e79e426f3c8dea142deb2c329407e3e7883f37c07a642a20463107ddff3

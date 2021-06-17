@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import "./css/ShowMessages.css";
 
@@ -5,7 +6,34 @@ const ShowMessages = (props) => {
 
     const messageRef = props.firestore.collection("messages");
     const receivedMessagesQuery = messageRef.where("to", "==", props.user.uid).orderBy("timestamp", "asc").limitToLast(10);
-    const [messages] = useCollectionData(receivedMessagesQuery, { idField: 'id' });
+    const [receivedMessages] = useCollectionData(receivedMessagesQuery, { idField: 'id' });
+    const sentMessagesQuery = messageRef.where("from", "==", props.user.uid).orderBy("timestamp", "asc").limitToLast(10);
+    const [sentMessages] = useCollectionData(sentMessagesQuery, { idField: 'id' });
+    var [messages] = [];
+
+    useEffect(
+        () => {
+
+
+            var [tempMessageArray] = [];
+            if (receivedMessages) {
+
+                tempMessageArray = sentMessages ? sentMessages.concat(receivedMessages) : receivedMessages;
+            } else {
+
+                tempMessageArray = sentMessages ? sentMessages : [];
+            }
+
+            // tempMessageArray.sort(
+            //     (a, b) => {
+            //         return a.timestamp > b.timestamp;
+            //     }
+            // );
+            console.log(typeof tempMessageArray);
+            // console.log("Temp array.....", tempMessageArray)
+            messages = receivedMessages;
+        }, [receivedMessages, sentMessages, messages]);
+
     const bharathiPhotoURL = "/bms_dp.png";
     return (
         <div className="showMessages">
