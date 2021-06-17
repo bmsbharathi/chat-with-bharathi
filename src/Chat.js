@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './css/Chat.css';
+import ShowMessages from './ShowMessages';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import 'firebase/firestore';
@@ -49,7 +50,6 @@ const Chat = (props) => {
             <div className="header">
                 <div className="logout">
                     <FontAwesomeIcon icon={faSignOutAlt} className="fa-3x" onClick={logout} />
-
                 </div>
                 <div className="title">
                     <h1>Chat with Bharathi</h1>
@@ -58,7 +58,7 @@ const Chat = (props) => {
                 </div>
             </div>
             <div className="messages">
-
+                <ShowMessages firestore={firestore} user={loggedInUser} />
             </div>
             <div className="textArea">
                 <form onSubmit={sendMessage}>
