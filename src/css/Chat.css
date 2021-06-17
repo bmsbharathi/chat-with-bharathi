@@ -2,6 +2,7 @@
     float: left;
     text-align: center;
     width: 90%;
+    margin-bottom: 50px;
 }
 .logout {
     float: right;
@@ -15,12 +16,6 @@ img {
 .title span{
     color: rgb(219, 152, 92);
 }
-.messages{
-    height: 600px;
-    width: 600px;
-    margin-left: 600px;
-    margin-right: 600px;
-}
 .textArea{
     height: 100px;
     width: 600px;
@@ -30,7 +25,7 @@ img {
 .textArea input{
     height: 40px;
     margin: 10px;
-    width: 80%;
+    width: 90%;
     border-radius: 10px;
     
 }

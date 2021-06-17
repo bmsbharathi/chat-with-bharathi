@@ -40,8 +40,8 @@ const Chat = (props) => {
     };
 
     const logout = () => {
-        alert('logout executed!!!')
-        auth.signOut();
+        if (window.confirm('Do you want to sign out?'))
+            auth.signOut();
     };
 
     return (
@@ -57,9 +57,7 @@ const Chat = (props) => {
                     <img src={loggedInUser.photoURL} alt="displayimage" />
                 </div>
             </div>
-            <div className="messages">
-                <ShowMessages firestore={firestore} user={loggedInUser} />
-            </div>
+            <ShowMessages firestore={firestore} user={loggedInUser} />
             <div className="textArea">
                 <form onSubmit={sendMessage}>
                     <input name="message" value={message} placeholder="Say Something!" onChange={updateMessage} />

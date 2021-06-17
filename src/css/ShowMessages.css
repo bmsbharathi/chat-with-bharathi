@@ -1,0 +1,20 @@
+.showMessages{
+    top:400px;
+    height: 900px;
+    width: 600px;
+    margin-left: 600px;
+    margin-right: 600px;
+}
+.chatPicture{
+    height:40px;
+    width: 40px;
+}
+.chatPicture{
+    height:40px;
+    width: 40px;
+    margin: 5px;
+}
+.content {
+    line-height: 20px;
+    margin: 25px;
+}
