@@ -19,7 +19,7 @@ const Chat = (props) => {
             to: "Bharathi BMS",
             from: loggedInUser.displayName,
             message: message,
-            timestamp: new Date().toISOString()
+            timestamp: new Date()
         };
         messageRef.add(document).then(
             () => {
