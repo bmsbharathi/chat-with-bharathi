@@ -3,7 +3,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 const ShowMessages = (props) => {
 
     const messageRef = props.firestore.collection("messages");
-    const receivedMessagesQuery = messageRef.orderBy("timestamp", "asc").limitToLast(10);
+    const receivedMessagesQuery = messageRef.where("to", "==", props.user.displayName).orderBy("timestamp", "asc").limitToLast(10);
     const [messages] = useCollectionData(receivedMessagesQuery, { idField: 'id' });
 
     return (
