@@ -21,6 +21,7 @@ const ShowMessages = (props) => {
         messages.sort(
             (a, b) => { return a.timestamp > b.timestamp; }
         );
+        // messages = messages.slice(0, 10);
     }
     const bharathiPhotoURL = "/bms_dp.png";
     return (
@@ -36,10 +37,11 @@ const ShowMessages = (props) => {
                         }
                         return (
                             <div className="sentMessage" key={message.id}>
-                                <img align={align} className="chatPicture" src={align === "right" ? props.user.photoURL : bharathiPhotoURL} alt="displayPicture" />
+                                <img align={align} className="chatPicture" src={message.from !== props.adminUid ? props.user.photoURL : bharathiPhotoURL} alt="displayPicture" />
                                 <p align={align} className="content">
                                     {message.message}<br />
-                                    {sentTime}
+                                    {sentTime}<br />
+                                    {props.adminUid === props.user.uid && message.displayName}
                                 </p>
                             </div>
                         )

@@ -83,7 +83,7 @@ const Chat = (props) => {
                     <img src={loggedInUser.photoURL} alt="displayimage" />
                 </div>
             </div>
-            <ShowMessages firestore={firestore} user={loggedInUser} />
+            <ShowMessages firestore={firestore} user={loggedInUser} adminUid={adminUid} />
             <div className="textArea">
                 <form onSubmit={sendMessage}>
                     <input className="messageBar" name="message" value={message} placeholder="Say Something!" onChange={updateMessage} />
