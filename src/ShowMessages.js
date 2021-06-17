@@ -4,9 +4,9 @@ import "./css/ShowMessages.css";
 const ShowMessages = (props) => {
 
     const messageRef = props.firestore.collection("messages");
-    const receivedMessagesQuery = messageRef.where("to", "==", props.user.displayName).orderBy("timestamp", "asc").limitToLast(10);
+    const receivedMessagesQuery = messageRef.where("to", "==", props.user.uid).orderBy("timestamp", "asc").limitToLast(10);
     const [messages] = useCollectionData(receivedMessagesQuery, { idField: 'id' });
-    const bharathiPhotoURL = "https://lh3.googleusercontent.com/a-/AOh14Gj9XK4HKEuUkR2nI4CPRy_A028nEyDdMShKnWra15E=s96-c";
+    const bharathiPhotoURL = "/bms_dp.png";
     return (
         <div className="showMessages">
 
@@ -15,7 +15,7 @@ const ShowMessages = (props) => {
                     (message) => {
                         var sentTime = message.timestamp.toDate().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
                         var align = "left";
-                        if (message.from === props.user.displayName) {
+                        if (message.from === props.user.uid) {
                             align = "right";
                         }
                         return (

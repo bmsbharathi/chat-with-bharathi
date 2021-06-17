@@ -10,14 +10,15 @@ const Chat = (props) => {
     const auth = props.firebase.auth();
     const [message, setMessage] = useState("");
     var loggedInUser = auth.currentUser;
+    console.log(loggedInUser.uid);
     const messageRef = firestore.collection("messages");
 
     const sendMessage = (evt) => {
         evt.preventDefault();
         console.log('Sending message...');
         var document = {
-            to: "Bharathi BMS",
-            from: loggedInUser.displayName,
+            to: "cJ8EZwTgp7VGS9sMoC9ZThNrRax1",
+            from: loggedInUser.uid,
             message: message,
             timestamp: new Date()
         };
