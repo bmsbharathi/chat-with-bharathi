@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import 'firebase/firestore';
+import "firebase/firestore";
+import "firebase/auth";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const Chatroom = (props) => {
-    const firestore = props.firebase.firestore();
-    const user = props.firebase.auth().currentUser;
+    const [firestore, setFireStore] = useState(props.firebase.firestore());
+    const [user, setUser] = useState(props.firebase.auth().currentUser);
     var [messageInput, setMessageInput] = useState("");
-    var fireStoreCollectionRef = firestore.collection("chatroom");
+    const fireStoreCollectionRef = firestore.collection("chatroom");
     var olderMessagesQuery = fireStoreCollectionRef.orderBy("timestamp", "ASC").limitToLast(10);
     var [olderMessages] = useCollectionData(olderMessagesQuery, { idField: 'id' });
-    // useEffect(
-    //     () => {
-    //         setFireStore(props.firebase.firestore());
-    //         setUser(props.firebase.auth().currentUser);
-    //     }, [props.firebase,]
-    // );
+    useEffect(
+        () => {
+            setFireStore(props.firebase.firestore());
+            setUser(props.firebase.auth().currentUser);
+        }, [props.firebase,]
+    );
 
     const sendMessage = (evt) => {
 

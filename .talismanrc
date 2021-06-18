@@ -3,3 +3,7 @@ fileignoreconfig:
   checksum: c5c4bcb8fb4f5ffa16ba3ac14a2ebdcb6094921cc9ac12b60ca142a98a625222
 - filename: src/Chatroom.js
   checksum: c1eaf534f6a3e7fcd42615f8276dd7ddadab400275fd6aab55f2c23ce4a9e819
+- filename: src/App.js
+  checksum: 9366e7fec7f703a0ab463c8dd6b977f1efe6d3e7fd05caa1dd707ef0e91d32f1
+- filename: src/Chat.js
+  checksum: 8da2998f4f52d8f2aec2acf71e126946aa54c6c3bd9de579b64f6f3d024834f5
