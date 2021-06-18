@@ -1,0 +1,40 @@
+.App{
+    
+}
+.icon{
+    cursor: pointer;
+}
+.header{
+    margin: 20px;
+    height: 100px;
+}
+.pageTitle{
+    width: 90%;
+    font-size: xx-large;
+    font-weight: 900px;
+    float: left;
+    text-align: center;
+}
+.logout{
+    float: right;
+    text-align: right;
+}
+.welcomeMessage p{
+    text-align: center;
+    color: rgb(219, 152, 92);
+}
+.welcomeMessage{
+    align-items: center;
+    text-align: center;
+}
+.appNavigation{
+    align-items: center;
+    text-align: center;
+}
+.appNavigation h4{
+    color: rgb(219, 152, 92);
+}
+.appNavigation{
+    line-height: 20px;
+    font-size: 20px;
+}
