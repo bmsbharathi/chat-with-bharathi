@@ -41,4 +41,14 @@
 .serviceArea{
     align-items: center;
     text-align: center;
+    height: 600px;
+}
+.messageInput{
+    border-radius: 15px;
+    width: 30%;
+    height: 30px;
+    margin: 10px;
+}
+.messageBar{
+    position: fixed; bottom:0; left:0; right:0;
 }

@@ -1,5 +1,5 @@
 import './css/Chat.css';
-import { faSignOutAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = (props) => {
 

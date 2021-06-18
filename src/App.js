@@ -70,7 +70,7 @@ function App() {
         </p>
       </div>
       <div className="serviceArea" style={{ display: (showGroupChat || showPersonalChat) ? "block" : "none" }}>
-        {showGroupChat ? <Chatroom /> : (showPersonalChat) ? <Chat /> : <div>Service Unavailable</div>}
+        {showGroupChat ? <Chatroom firebase={firebase} /> : (showPersonalChat) ? <Chat firebase={firebase} /> : <div>Service Unavailable</div>}
       </div>
     </div>
   );
