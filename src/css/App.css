@@ -9,7 +9,7 @@
     height: 100px;
 }
 .pageTitle{
-    width: 90%;
+    width: 97%;
     font-size: xx-large;
     font-weight: 900px;
     float: left;
@@ -37,4 +37,8 @@
 .appNavigation{
     line-height: 20px;
     font-size: 20px;
+}
+.serviceArea{
+    align-items: center;
+    text-align: center;
 }

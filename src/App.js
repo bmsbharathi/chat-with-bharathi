@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'firebase/auth';
-import { faSignOutAlt, faSignInAlt, faUsers, faUser, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faSignInAlt, faUsers, faUser } from '@fortawesome/free-solid-svg-icons';
 import './css/App.css';
+import Chatroom from './Chatroom';
+import Chat from './Chat';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -14,8 +16,8 @@ firebase.initializeApp(firebaseConfig);
 
 function App() {
 
-  const showGroupChat = false;
-  const showPersonalChat = false;
+  const [showGroupChat, setShowGroupChat] = useState(false);
+  const [showPersonalChat, setShowPersonalChat] = useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
 
@@ -26,8 +28,22 @@ function App() {
   };
 
   const logout = () => {
-    if (window.confirm('Do you want to sign out?'))
+    if (window.confirm('Do you want to sign out?')) {
       auth.signOut();
+      setShowPersonalChat(false);
+      setShowGroupChat(false);
+    }
+  };
+
+  const openService = (service) => {
+
+    if (service === 'chat') {
+
+      setShowPersonalChat(true);
+    } else {
+
+      setShowGroupChat(true);
+    }
   };
 
   return (
@@ -44,13 +60,17 @@ function App() {
         <FontAwesomeIcon icon={faSignInAlt} className="fa-4x icon" onClick={loginWithGoogle} />
         <br />Sign in with Google
       </div>
-      <div className="appNavigation">
+      <div className="appNavigation" style={{ display: (user && !showGroupChat && !showPersonalChat) ? "block" : "none" }}>
+
+        <h4>Here you can do two things</h4> <br />
         <p>
-          <h4>Here you can do two things</h4> <br />
-          Chat with Bharathi <FontAwesomeIcon icon={faUser} className="fa-2x icon" /> <br />
+          Chat with Bharathi &nbsp;<FontAwesomeIcon icon={faUser} className="fa-2x icon" onClick={() => openService('chat')} /> <br />
           <br />
-          Go to Chatroom <FontAwesomeIcon icon={faUsers} className="fa-2x icon" /> <br />
+          Go to Chatroom &nbsp;<FontAwesomeIcon icon={faUsers} className="fa-2x icon" onClick={() => openService('chatroom')} /> <br />
         </p>
+      </div>
+      <div className="serviceArea" style={{ display: (showGroupChat || showPersonalChat) ? "block" : "none" }}>
+        {showGroupChat ? <Chatroom /> : (showPersonalChat) ? <Chat /> : <div>Service Unavailable</div>}
       </div>
     </div>
   );
