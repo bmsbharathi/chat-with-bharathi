@@ -8,18 +8,17 @@ import { ADMIN_UID } from "./ENV_CONSTANTS";
 
 const Chat = (props) => {
 
-    const [firestore, setFiresStore] = useState(props.firebase.firestore());
+    const [firestore, setFireStore] = useState(props.firebase.firestore());
     const [auth, setAuth] = useState(props.firebase.auth());
     const [messageInput, setMessageInput] = useState("");
-    var loggedInUser = auth.currentUser;
-    console.log(loggedInUser.uid);
+    const loggedInUser = auth.currentUser;
     const firestoreCollectionRef = firestore.collection("messages");
     const receivedMessagesQuery = firestoreCollectionRef.where("to", "==", loggedInUser.uid).orderBy("timestamp", "asc").limitToLast(10);
     const [messages] = useCollectionData(receivedMessagesQuery, { idField: 'id' });
 
     useEffect(
         () => {
-            setFiresStore(props.firebase.firestore());
+            setFireStore(props.firebase.firestore());
             setAuth(props.firebase.auth());
         }, [props.firebase]
     );

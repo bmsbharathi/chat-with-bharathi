@@ -5,33 +5,37 @@ import "firebase/firestore";
 import "firebase/auth";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
+
 const Chatroom = (props) => {
+
     const [firestore, setFireStore] = useState(props.firebase.firestore());
-    const [user, setUser] = useState(props.firebase.auth().currentUser);
-    var [messageInput, setMessageInput] = useState("");
-    const fireStoreCollectionRef = firestore.collection("chatroom");
-    var olderMessagesQuery = fireStoreCollectionRef.orderBy("timestamp", "ASC").limitToLast(10);
-    var [olderMessages] = useCollectionData(olderMessagesQuery, { idField: 'id' });
+    const [auth, setAuth] = useState(props.firebase.auth());
+    const [messageInput, setMessageInput] = useState("");
+    const loggedInUser = auth.currentUser;
+    const firestoreCollectionRef = firestore.collection("chatroom");
+    const chatroomMessagesQuery = firestoreCollectionRef.orderBy("timestamp", "asc").limitToLast(10);
+    const [chatroomMessages] = useCollectionData(chatroomMessagesQuery, { idField: 'id' });
+
+
     useEffect(
         () => {
             setFireStore(props.firebase.firestore());
-            setUser(props.firebase.auth().currentUser);
-        }, [props.firebase,]
+            setAuth(props.firebase.auth());
+        }, [props.firebase]
     );
-
     const sendMessage = (evt) => {
 
         evt.preventDefault();
         var messageDocument = {
             message: messageInput,
-            sender: user.displayName,
+            sender: loggedInUser.displayName,
             timestamp: new Date(),
-            displayPhoto: user.photoURL
+            displayPhoto: loggedInUser.photoURL
         };
         console.log("Document:::::::", messageDocument);
-        fireStoreCollectionRef.add(messageDocument).then(
-            (response) => {
-                console.log("successfully posted!", response);
+        firestoreCollectionRef.add(messageDocument).then(
+            () => {
+                console.log("successfully posted!");
                 setMessageInput("");
             }
         ).catch(
@@ -46,7 +50,7 @@ const Chatroom = (props) => {
 
             <h2>Chat Room</h2>
             <div>
-                {olderMessages && olderMessages.map(
+                {chatroomMessages && chatroomMessages.map(
                     (messageItem) => {
                         return (<p key={messageItem.id}>{messageItem.message}</p>)
                     }
