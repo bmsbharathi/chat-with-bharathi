@@ -1,37 +1,38 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState, } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 import "firebase/firestore";
 import "firebase/auth";
 import { ADMIN_UID } from "./ENV_CONSTANTS";
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const Chat = (props) => {
 
-    const [firestore, setFireStore] = useState(props.firebase.firestore());
-    const [user, setUser] = useState(props.firebase.auth().currentUser);
-    var [messageInput, setMessageInput] = useState("");
-    const fireStoreCollectionRef = firestore.collection("messages");
-    var olderMessagesQuery = fireStoreCollectionRef.where("to", "===", user.uid).orderBy("timestamp", "ASC").limitToLast(10);
-    var [olderMessages] = useCollectionData(olderMessagesQuery, { idField: 'id' });
+    const [firestore, setFiresStore] = useState(props.firebase.firestore());
+    const [auth, setAuth] = useState(props.firebase.auth());
+    const [messageInput, setMessageInput] = useState("");
+    var loggedInUser = auth.currentUser;
+    console.log(loggedInUser.uid);
+    const firestoreCollectionRef = firestore.collection("messages");
+    const receivedMessagesQuery = firestoreCollectionRef.where("to", "==", loggedInUser.uid).orderBy("timestamp", "asc").limitToLast(10);
+    const [messages] = useCollectionData(receivedMessagesQuery, { idField: 'id' });
 
     useEffect(
         () => {
-            setFireStore(props.firebase.firestore());
-            setUser(props.firebase.auth().currentUser);
-        }, [props.firebase,]
+            setFiresStore(props.firebase.firestore());
+            setAuth(props.firebase.auth());
+        }, [props.firebase]
     );
     const sendMessage = (evt) => {
-
         evt.preventDefault();
         console.log('Sending message...');
         var document = {
             to: ADMIN_UID,
-            from: user.uid,
+            from: loggedInUser.uid,
             message: messageInput,
             timestamp: new Date()
         };
-        fireStoreCollectionRef.add(document).then(
+        firestoreCollectionRef.add(document).then(
             () => {
                 console.log("successfully posted");
                 setMessageInput("");
@@ -43,12 +44,13 @@ const Chat = (props) => {
         );
     };
 
+
     return (
         <div className="chat">
 
             <h2>1 v 1 conversation with Bharathi</h2>
             <div>
-                {olderMessages && olderMessages.map(
+                {messages && messages.map(
                     (messageItem) => {
                         return (<p key={messageItem.id}>{messageItem.message}</p>)
                     }
