@@ -70,6 +70,11 @@ function App() {
         <FontAwesomeIcon icon={faSignInAlt} className="fa-4x icon" onClick={loginWithGoogle} />
         <br />Sign in with Google
       </div>
+      <div className="userInfo" style={{ display: user == null ? "none" : "block" }}>
+        {user != null && <p>
+          You are logged in as <span>{user.displayName}</span><br /><br />
+        </p>}
+      </div>
       <div className="appNavigation" style={{ display: (user && !showGroupChat && !showPersonalChat) ? "block" : "none" }}>
 
         <h4>Here you can do two things</h4> <br />

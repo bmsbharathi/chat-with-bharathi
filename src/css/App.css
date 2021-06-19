@@ -24,6 +24,18 @@
     align-items: center;
     text-align: center;
 }
+.userInfo{
+    align-items: center;
+    text-align: center;
+}
+.userInfo span{
+    color: rgb(219, 152, 92);
+}
+.displayPicture{
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
 .appNavigation{
     align-items: center;
     text-align: center;
