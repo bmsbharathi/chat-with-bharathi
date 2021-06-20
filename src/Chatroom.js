@@ -55,6 +55,7 @@ const Chatroom = (props) => {
                     (messageItem) => {
                         var sentTime = messageItem.timestamp.toDate().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
                         var sentDate = messageItem.timestamp.toDate().toLocaleDateString('en-GB');
+                        var today = new Date().toLocaleDateString();
                         var align = "left";
                         if (messageItem.senderUid === loggedInUser.uid) {
                             align = "right";
@@ -66,7 +67,7 @@ const Chatroom = (props) => {
                                     {(messageItem.senderUid !== loggedInUser.uid) && <span>{messageItem.sender}:&nbsp;</span>}
                                     {messageItem.message}<br />
                                     {sentTime}<br />
-                                    {sentDate}
+                                    {today === sentDate ? "Today" : sentDate}
                                 </p>
                             </div>
                         )
