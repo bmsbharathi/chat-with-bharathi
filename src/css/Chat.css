@@ -22,16 +22,3 @@ img {
     margin-left: 600px;
     margin-right: 600px;
 }
-.messageBar{
-    height: 40px;
-    margin: 10px;
-    width: 90%;
-    border-radius: 10px;
-    
-}
-.adminMessageBar{
-    height: 40px;
-    margin: 10px;
-    width: 20%;
-    border-radius: 10px;
-}

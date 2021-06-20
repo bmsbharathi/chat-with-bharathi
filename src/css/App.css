@@ -32,8 +32,8 @@
     color: rgb(219, 152, 92);
 }
 .displayPicture{
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     border-radius: 10px;
 }
 .appNavigation{
@@ -48,16 +48,16 @@
     font-size: 20px;
 }
 .serviceArea{
-    align-items: center;
-    text-align: center;
     height: 600px;
 }
 .messageInput{
     border-radius: 15px;
-    width: 30%;
     height: 30px;
     margin: 10px;
+    width: 30%;
 }
 .messageBar{
+    align-items: center;
+    text-align: center;
     position: fixed; bottom:0; left:0; right:0;
 }

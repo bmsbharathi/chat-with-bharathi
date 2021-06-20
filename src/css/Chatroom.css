@@ -1,0 +1,18 @@
+.chatroom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chatroomMessages{
+     text-align: unset;
+     display: flex;
+     flex-direction: column;
+}
+.message{
+    width: 400px;
+}
+.message img{
+    margin: 10px;
+}
