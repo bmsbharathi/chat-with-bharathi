@@ -6,4 +6,4 @@ fileignoreconfig:
 - filename: src/App.js
   checksum: 9366e7fec7f703a0ab463c8dd6b977f1efe6d3e7fd05caa1dd707ef0e91d32f1
 - filename: src/Chat.js
-  checksum: 8da2998f4f52d8f2aec2acf71e126946aa54c6c3bd9de579b64f6f3d024834f5
+  checksum: 5119806b556dd0d79a3e6247886cb17cf8911c400ef364c9d50dc0253576fd8b
