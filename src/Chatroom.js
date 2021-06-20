@@ -15,9 +15,8 @@ const Chatroom = (props) => {
     const [messageInput, setMessageInput] = useState("");
     const loggedInUser = auth.currentUser;
     const firestoreCollectionRef = firestore.collection("chatroom");
-    const chatroomMessagesQuery = firestoreCollectionRef.orderBy("timestamp", "asc").limitToLast(10);
+    const chatroomMessagesQuery = firestoreCollectionRef.orderBy("timestamp", "asc").limitToLast(8);
     const [chatroomMessages] = useCollectionData(chatroomMessagesQuery, { idField: 'id' });
-
 
     useEffect(
         () => {
@@ -55,6 +54,7 @@ const Chatroom = (props) => {
                 {chatroomMessages && chatroomMessages.map(
                     (messageItem) => {
                         var sentTime = messageItem.timestamp.toDate().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+                        var sentDate = messageItem.timestamp.toDate().toLocaleDateString('en-GB');
                         var align = "left";
                         if (messageItem.senderUid === loggedInUser.uid) {
                             align = "right";
@@ -63,8 +63,10 @@ const Chatroom = (props) => {
                             <div className="message" key={messageItem.id}>
                                 <img align={align} className="displayPicture" src={messageItem.displayPhoto ? messageItem.displayPhoto : DEFAULT_CHAT_DP} alt="displayPicture" />
                                 <p align={align} className="content">
+                                    {(messageItem.senderUid !== loggedInUser.uid) && <span>{messageItem.sender}:&nbsp;</span>}
                                     {messageItem.message}<br />
-                                    {sentTime}
+                                    {sentTime}<br />
+                                    {sentDate}
                                 </p>
                             </div>
                         )

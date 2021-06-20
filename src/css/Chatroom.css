@@ -13,6 +13,10 @@
 .message{
     width: 400px;
 }
+.message span{
+    color: rgb(219, 152, 92);
+}
 .message img{
     margin: 10px;
+    margin-top:20px;
 }
