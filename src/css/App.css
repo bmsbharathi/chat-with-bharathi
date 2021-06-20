@@ -6,15 +6,12 @@
     height: 50px;
 }
 .pageTitle{
-    width: 97%;
     font-size: xx-large;
     font-weight: 900px;
-    float: left;
-    text-align: center;
 }
 .logout{
     float: right;
-    text-align: right;
+    margin: 10px;
 }
 .welcomeMessage p{
     text-align: center;
