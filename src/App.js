@@ -65,8 +65,8 @@ function App() {
       </div>
       <div className="welcomeMessage" style={{ display: user ? "none" : "block" }}>
         <p>
-          This App is created to apply my reacting and integrate it with Firebase for the backend.<br />
-          Play around with it and let me know if you like it.Cheers!
+          This App is created to apply my react learnings and integrate it with Firebase for the backend.<br />
+          Play around with it and let me know if you like it. Cheers!
         </p>
         <FontAwesomeIcon icon={faSignInAlt} className="fa-4x icon" onClick={loginWithGoogle} />
         <br />Sign in with Google
