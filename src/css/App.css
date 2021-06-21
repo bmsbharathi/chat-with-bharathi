@@ -45,17 +45,16 @@
     font-size: 20px;
 }
 .serviceArea{
-    height: 8500px;
+    height: 850px;
 }
 .messageInput{
     border-radius: 15px;
     height: 30px;
     margin: 10px;
-    width: 60%;
+    width: 300px;
 }
 .messageBar{
     align-items: center;
     text-align: center;
-    width: 400px;
-    position: fixed; bottom:0;
+    position: fixed; bottom:0; left:0; right:0;
 }
