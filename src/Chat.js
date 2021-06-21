@@ -13,7 +13,7 @@ const Chat = (props) => {
     const [recipientUid, setRecipientUid] = useState("");
     const [messageInput, setMessageInput] = useState("");
     const loggedInUser = auth.currentUser;
-    const firestoreCollectionRef = firestore.collection("messages");
+    const firestoreCollectionRef = firestore.collection("messagesDev");
 
     const chatMessagesQuery = firestoreCollectionRef.orderBy("timestamp", "asc").limitToLast(8);
     const [chatMessages] = useCollectionData(chatMessagesQuery, { idField: 'id' });

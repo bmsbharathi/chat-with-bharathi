@@ -11,7 +11,7 @@
      flex-direction: column;
 }
 .message{
-    width: 500px;
+    width: 350px;
 }
 .message span{
     color: rgb(219, 152, 92);

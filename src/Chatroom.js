@@ -14,7 +14,7 @@ const Chatroom = (props) => {
     const [auth, setAuth] = useState(props.firebase.auth());
     const [messageInput, setMessageInput] = useState("");
     const loggedInUser = auth.currentUser;
-    const firestoreCollectionRef = firestore.collection("chatroom");
+    const firestoreCollectionRef = firestore.collection("chatroomDev");
     const chatroomMessagesQuery = firestoreCollectionRef.orderBy("timestamp", "asc").limitToLast(8);
     const [chatroomMessages] = useCollectionData(chatroomMessagesQuery, { idField: 'id' });
 
